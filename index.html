@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TYTL Corp Home Equity Tokenized</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #EDD98A22;
+    --gold-border: #C9A84C44;
+    --black: #0A0A0A;
+    --dark: #1A1A1A;
+    --mid: #555555;
+    --muted: #888888;
+    --light: #F7F4EF;
+    --bg: #FFFFFF;
+    --card: #F9F7F4;
+    --border: #E8E4DC;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --serif: 'EB Garamond', Georgia, serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--dark);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+  /* NAV */
+  nav {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    margin-bottom: 0;
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: var(--sans); font-weight: 600; font-size: 18px; letter-spacing: 0.08em; color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; }
+  .nav-cta { background: var(--gold); color: #fff !important; padding: 7px 18px; border-radius: 20px; font-weight: 500; font-size: 12px !important; }
+
+  /* SECTIONS */
+  section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  .sec-label {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  }
+  .sec-label hr { flex: 1; border: none; border-top: 1px solid var(--border); }
+  .sec-label span {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--gold); font-weight: 600; white-space: nowrap;
+  }
+
+  .eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+
+  h1 { font-family: var(--sans); font-size: 36px; font-weight: 500; line-height: 1.15; color: var(--black); }
+  h2 { font-family: var(--sans); font-size: 22px; font-weight: 500; line-height: 1.25; color: var(--black); margin-bottom: 12px; }
+  h3 { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  p { color: var(--mid); line-height: 1.75; margin-bottom: 12px; font-size: 13px; }
+  p:last-child { margin-bottom: 0; }
+
+  .pull {
+    font-family: var(--serif); font-size: 18px; font-style: italic;
+    color: var(--dark); line-height: 1.5;
+    border-left: 3px solid var(--gold); padding-left: 18px;
+    margin: 18px 0 20px;
+  }
+
+  /* HERO */
+  .hero { text-align: center; padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+  .hero h1 { font-size: 42px; margin-bottom: 18px; }
+  .hero p { font-size: 14px; max-width: 520px; margin: 0 auto 32px; color: var(--mid); }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; margin-bottom: 48px; }
+
+  .btn-gold {
+    background: var(--gold); color: #fff;
+    font-size: 13px; font-weight: 500;
+    padding: 12px 28px; border-radius: 24px;
+    border: none; cursor: pointer; font-family: var(--sans);
+    text-decoration: none; display: inline-block;
+  }
+  .btn-outline {
+    background: transparent; color: var(--dark);
+    font-size: 13px; font-weight: 500;
+    padding: 12px 28px; border-radius: 24px;
+    border: 1.5px solid var(--border); cursor: pointer;
+    font-family: var(--sans); text-decoration: none; display: inline-block;
+  }
+
+  .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; max-width: 600px; margin: 0 auto; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; }
+  .stat-n { font-size: 22px; font-weight: 600; color: var(--gold); font-family: var(--sans); }
+  .stat-l { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* PARTNERS */
+  .partners-strip {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; margin-top: 48px;
+  }
+  .partner {
+    flex: 1; padding: 16px 10px; text-align: center;
+    border-right: 1px solid var(--border); font-size: 12px;
+    font-weight: 500; color: var(--dark);
+  }
+  .partner:last-child { border-right: none; }
+  .partner.solana { color: #9945FF; }
+
+  /* GRID LAYOUTS */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* CARDS */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px;
+  }
+  .card-gold { border-color: var(--gold-border); background: #FDFBF6; }
+
+  /* TAG */
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .tag-c { background: #EBF3FF; color: #1D5FAD; }
+  .tag-i { background: #EAFAF0; color: #1A7A40; }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: 14px; }
+  .step { display: flex; gap: 14px; align-items: flex-start; }
+  .step-n {
+    width: 24px; height: 24px; min-width: 24px; border-radius: 50%;
+    background: var(--gold-light); border: 1px solid var(--gold-border);
+    color: var(--gold); font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; margin-top: 1px;
+  }
+  .step p { margin: 0; }
+  .step strong { color: var(--dark); font-weight: 600; }
+
+  /* CTA BLOCK */
+  .cta-block {
+    border: 1.5px solid var(--gold-border); background: #FDFBF6;
+    border-radius: 12px; padding: 32px; text-align: center; margin-top: 20px;
+  }
+  .cta-block h2 { margin-bottom: 10px; }
+  .cta-block p { max-width: 380px; margin: 0 auto 22px; }
+  .cta-note { font-size: 11px; color: var(--muted); margin-top: 12px !important; }
+
+  /* TABLE */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .tbl th {
+    text-align: left; padding: 8px 10px; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600;
+    color: var(--muted); border-bottom: 1px solid var(--border);
+  }
+  .tbl td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--dark); }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl .gv { color: var(--gold); font-weight: 600; }
+
+  /* PILLARS */
+  .pillar { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+  .pillar:last-child { margin-bottom: 0; }
+  .pillar-num {
+    width: 26px; height: 26px; min-width: 26px; border-radius: 50%;
+    border: 1px solid var(--gold-border); color: var(--gold);
+    font-size: 11px; font-weight: 600; display: flex;
+    align-items: center; justify-content: center; margin-top: 1px;
+  }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { display: flex; gap: 12px; font-size: 13px; font-weight: 500; color: var(--dark); margin-bottom: 6px; }
+  .faq-num { color: var(--gold); font-size: 11px; font-weight: 600; min-width: 20px; margin-top: 2px; }
+  .faq-a { font-size: 12px; color: var(--mid); line-height: 1.7; padding-left: 32px; }
+  .faq-more { text-align: center; padding: 20px 0 4px; }
+  .faq-link { color: var(--gold); font-size: 12px; font-weight: 500; text-decoration: none; border-bottom: 1px solid var(--gold-border); padding-bottom: 2px; }
+
+  /* CONTACT */
+  .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .contact-card .eyebrow { margin-bottom: 8px; }
+  .contact-card p { margin-bottom: 14px; font-size: 12px; }
+
+  /* FOOTER */
+  footer { background: var(--black); padding: 48px 0 32px; }
+  .footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+  .footer-logo { font-size: 18px; font-weight: 600; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 12px; }
+  .footer-tagline { font-size: 13px; color: #888; line-height: 1.65; max-width: 220px; font-family: var(--serif); font-style: italic; }
+  .footer-col-h { font-size: 11px; font-weight: 600; color: #fff; margin-bottom: 12px; letter-spacing: 0.04em; }
+  .footer-link { display: block; font-size: 12px; color: #777; margin-bottom: 6px; text-decoration: none; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid #222; }
+  .footer-bottom p { font-size: 11px; color: #555; margin: 0; }
+
+  /* PRINT RULES */
+  @media print {
+    body { font-size: 12px; }
+    nav, .hero-btns, .btn-gold, .btn-outline, .cta-block a, .faq-link, .nav-cta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    section { page-break-inside: avoid; }
+    .grid2, .grid3 { page-break-inside: avoid; }
+    footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .partners-strip { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">TYTL</div>
+    <div class="nav-links">
+      <a href="#homeowners">Homeowners</a>
+      <a href="#investors">Investors</a>
+      <a href="#token">Token</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Home Equity Tokenized</div>
+    <h1>Designed for Homeowners.<br>Built for Investors.</h1>
+    <p>The TYTL platform enables homeowners to convert equity into capital without debt, interest, or future payment obligations, while converting fractional ownership in residential real estate into transparent, fully asset-backed digital securities for investors.</p>
+    <div class="hero-btns">
+      <a href="#homeowners" class="btn-gold">I'm a homeowner</a>
+      <a href="#investors" class="btn-outline">I'm an investor</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-n">$35T</div><div class="stat-l">Available US home equity</div></div>
+      <div class="stat"><div class="stat-n">1:1</div><div class="stat-l">Token to recorded equity</div></div>
+      <div class="stat"><div class="stat-n">$1.82B</div><div class="stat-l">Solana RWA ecosystem</div></div>
+    </div>
+    <div class="partners-strip">
+      <div class="partner">Beeline Holdings</div>
+      <div class="partner">Anchorage Digital Bank</div>
+      <div class="partner solana">◎ Solana</div>
+      <div class="partner">Strobe Ventures</div>
+      <div class="partner">Fifth Era</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOMEOWNERS -->
+<section id="homeowners">
+  <div class="wrap">
+    <div class="sec-label"><hr><span>For Homeowners</span><hr></div>
+    <span class="tag tag-c">Homeowners</span>
+
+    <div class="pull">At the heart of homeownership is possibility. Not just to own, but to live on your terms.</div>
+
+    <p style="font-size:14px; color:var(--dark); line-height:1.8; margin-bottom:6px;">TYTL is a new way to access your home's value without taking on more debt. We invest alongside homeowners, providing cash today in exchange for a small share of the home's future value. Your home is where your wealth lives. We help you access it.</p>
+    <p>Homeowners access up to $500,000 of tax-free liquidity while retaining full occupancy and control. No monthly payment obligations, no refinancing risk, no debt exposure. Turning home equity into real access and everyday freedom.</p>
+
+    <div class="grid2" style="margin-top:28px; margin-bottom:20px;">
+      <div class="card">
+        <h3>No payments. No interest.</h3>
+        <p>Beeline Equity is a fractional equity sale, not a loan. There are no monthly payments, no income or credit requirements, and no interest charges. Sell a small slice of your equity and receive cash. No need to pay it back until your home is sold or title is transferred.</p>
+      </div>
+      <div class="card">
+        <h3>No ticking clock.</h3>
+        <p>Unlike traditional Home Equity Investments, there is no buyback requirement or settlement deadline. No appraisal. No credit check. No hidden levers. Close in 10 to 14 days. You stay in your home, avoid accumulating debt, and stay in control.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <h3 style="margin-bottom:18px;">How it works</h3>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><p><strong>You apply.</strong> Homes valued over $1M in top-appreciating US markets. No appraisal, no credit underwriting required.</p></div>
+        <div class="step"><div class="step-n">2</div><p><strong>One closing.</strong> A standard real estate transaction, the same process used to buy and sell homes. Completed in 10 to 14 days.</p></div>
+        <div class="step"><div class="step-n">3</div><p><strong>You receive cash.</strong> Up to $500,000, tax-free. Delivered via wire transfer at closing.</p></div>
+        <div class="step"><div class="step-n">4</div><p><strong>You stay in your home.</strong> Full occupancy and control. TYTL participates when the title transfers at sale.</p></div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <h2>Make your home your advantage.</h2>
+      <p>We help homeowners unlock a percentage of their home's value. No payments. No interest.</p>
+      <p style="font-family: var(--serif); font-style:italic; font-size:16px; color:var(--dark); margin-bottom:20px;">Your home is where your wealth lives. We help you access it.</p>
+      <a href="https://makeabeeline.com/beeline-equity" target="_blank" class="btn-gold">Start on Beeline Equity</a>
+      <p class="cta-note" style="margin-top:14px !important; font-size:11px; color:var(--muted);">Powered by Beeline Equity &nbsp;&middot;&nbsp; Transactions facilitated through Beeline Holdings (NASDAQ: BLNE), TYTL's exclusive Consumer Launch Partner and Title Execution Partner.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTORS -->
+<section id="investors">
+  <div class="wrap">
+    <div class="sec-label"><hr><span>For Investors</span><hr></div>
+    <span class="tag tag-i">Investors</span>
+    <h2>Prime residential real estate.<br>Deed-backed. Fully transparent.</h2>
+    <p>TYTL provides institutional investors access to an asset class that has not existed before: individual property-level exposure to prime US single-family residential real estate, with deed-recorded ownership, 1:1 tokenization, daily transparent valuation, and institutional-grade custody.</p>
+    <p style="margin-top:0;">Prime single-family residential in top-quartile appreciating ZIP codes has historically been one of the most consistent appreciating asset classes in America. Until TYTL, there was no scalable, transparent, liquid instrument to access it at the individual property level. The TYTL token is that instrument.</p>
+
+    <div class="grid3" style="margin-top:24px; margin-bottom:24px;">
+      <div class="card">
+        <h3>A new instrument</h3>
+        <p>Mortgage-backed securities are debt-backed, pooled, and dependent on borrower repayment. REITs are pooled funds with dividend obligations. TYTL tokens are individual property level, appreciation-driven, and deed-recorded. No direct equivalent exists in the current market.</p>
+      </div>
+      <div class="card">
+        <h3>Institutional transparency</h3>
+        <p>Every property has a unique Solana Program Derived Address. Portfolio revalued nightly by multiple independent AVMs. NAV published on-chain via Chainlink oracle. Property-level data publicly verifiable. Every claim is auditable.</p>
+      </div>
+      <div class="card">
+        <h3>The regulatory path</h3>
+        <p>Currently available to institutions and accredited investors under Regulation D, with custody through Anchorage Digital Bank. TYTL is pursuing Regulation A registration to broaden access and expand secondary market liquidity on Solana.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="eyebrow">The instrument</div>
+      <table class="tbl">
+        <tr><th>Property</th><th>Detail</th></tr>
+        <tr><td>Underlying asset</td><td class="gv">Deed-recorded fractional equity</td></tr>
+        <tr><td>Minimum property value</td><td>$1M+, top-quartile appreciating ZIP codes (≥6.5% CAGR)</td></tr>
+        <tr><td>Token structure</td><td>1:1 — one dollar of recorded equity per token</td></tr>
+        <tr><td>Valuation</td><td>Nightly, multiple independent AVMs, published on-chain via Chainlink</td></tr>
+        <tr><td>Blockchain</td><td>Solana — one Program Derived Address per property</td></tr>
+        <tr><td>Custody</td><td class="gv">Anchorage Digital Bank (federally chartered)</td></tr>
+        <tr><td>Return driver</td><td>Asset appreciation, acquired at discount to CFMV</td></tr>
+        <tr><td>Rate exposure</td><td>None</td></tr>
+        <tr><td>Current access</td><td>Reg D — institutions and accredited investors</td></tr>
+      </table>
+    </div>
+
+    <div class="cta-block">
+      <h2>Investment Inquiry</h2>
+      <p>For accredited and institutional investors interested in the TYTL Forward Purchase Commitment Offering or TYTL Tokens.</p>
+      <a href="mailto:investors@tytl.ai" class="btn-gold">Inquire Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- TOKEN -->
+<section id="token">
+  <div class="wrap">
+    <div class="sec-label"><hr><span>The TYTL Token</span><hr></div>
+    <h2>What is a TYTL Token?</h2>
+    <p>A TYTL Token is a fully asset-backed digital security representing a pro-rata economic interest in a diversified portfolio of deeded residential real estate equity and treasury-held cash assets. Each token is issued only after TYTL acquires a legally recorded fractional ownership interest in a qualifying home. Portfolio value and token pricing are calculated daily and recorded on-chain. TYTL Tokens are not debt instruments and do not provide dividends or guaranteed liquidity.</p>
+
+    <div class="grid2" style="margin-top:24px;">
+      <div class="card">
+        <h3>The title is on the chain</h3>
+        <p>When people talk about tokenization, they often mean a contract that references an asset. With TYTL, the fractional ownership interest exists in the public property record. The blockchain is the transparency layer the deed is the foundation.</p>
+      </div>
+      <div class="card">
+        <h3>Daily NAV, on-chain</h3>
+        <p>Portfolio revalued nightly using multiple independent AVMs. NAV published on-chain via Chainlink oracle infrastructure, alongside treasury balances held at Anchorage Digital Bank. Token value tracks the underlying real estate portfolio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label"><hr><span>About TYTL Corp</span><hr></div>
+    <div class="grid2">
+      <div>
+        <h2 style="margin-bottom:14px;">About TYTL Corp.</h2>
+        <p>TYTL Corp. is a blockchain-based platform that enables the tokenization of fractional equity interests in US residential real estate. TYTL bridges established property law with programmable blockchain infrastructure, creating a debt-free home equity product for homeowners and a new asset class for institutional investors.</p>
+        <p>TYTL focuses on building regulatory-compliant digital securities that benefit homeowners and provide consistent, market-leading returns for investors and token holders. Backed by Strobe Ventures and Fifth Era, built on Solana, and custodied through Anchorage Digital Bank.</p>
+        <p style="margin-top:4px;"><strong style="color:var(--dark);">Co-Founders:</strong> Nick Liuzza &amp; Brendan Reilly</p>
+        <p style="margin-top:10px; font-size:12px; color:var(--muted); font-style:italic;">[ Placeholder: Team and board members ]</p>
+      </div>
+      <div>
+        <div class="pillar">
+          <div class="pillar-num">1</div>
+          <div>
+            <h3>Real ownership</h3>
+            <p>The TYTL token represents a deed-recorded fractional equity interest. The title is on the chain actual recorded ownership, not a reference to it.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">2</div>
+          <div>
+            <h3>Stability through location</h3>
+            <p>Homes over $1M in the top 10,000 appreciating ZIP codes places where American wealth has compounded consistently for decades.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">3</div>
+          <div>
+            <h3>Transparency by architecture</h3>
+            <p>Nightly CFMV revaluation. Property-level data on-chain. One Solana Program Derived Address per property. Anchorage custody. Every claim is verifiable.</p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">4</div>
+          <div>
+            <h3>Live and operating</h3>
+            <p>TYTL is a live platform with completed transactions and deployed tokens. The technical stack explains itself on-chain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-label"><hr><span>Frequently Asked Questions</span><hr></div>
+    <h2 style="margin-bottom:24px;">Common questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-num">01</span>What is TYTL?</div>
+      <div class="faq-a">TYTL is a blockchain-based platform that enables fractional ownership of prime US residential real estate in high-appreciation ZIP codes. Each TYTL token represents a direct pro-rata ownership interest in recorded property title across a diversified portfolio of premium single-family homes. Ownership is dual-recorded on-chain via Solana and legally on deed at the county level.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-num">02</span>How is TYTL different from a HELOC, HEI, or cash-out refinance?</div>
+      <div class="faq-a">TYTL is an equity purchase, not debt. With a HELOC, cash-out refinance, or HEI, you are borrowing against your home taking on repayment obligations, interest costs, and increasing financial risk. With TYTL, you are selling a fractional ownership interest. No monthly payments, no interest, no loan balance, no risk of foreclosure due to missed payments.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-num">03</span>Do homeowners give up control of their property?</div>
+      <div class="faq-a">No. Homeowners retain full control, occupancy, and decision-making rights. TYTL is a passive minority owner and does not interfere with how the property is used or maintained.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-num">04</span>Is a TYTL transaction taxable?</div>
+      <div class="faq-a">A TYTL transaction is generally treated as a partial sale of your home. In almost all cases, homeowners qualify for the IRS §121 capital gains exclusion up to $250,000 (individual) or $500,000 (married filing jointly). As a result, most homeowners owe little or no tax. Consult a qualified tax advisor for guidance specific to your situation.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-num">05</span>Can I buy back the equity I sold?</div>
+      <div class="faq-a">Yes. For up to three years, homeowners may repurchase TYTL's ownership stake at a discount to current market value. After three years, homeowners may buy back at the current Consensus Fair Market Value.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-num">06</span>How do TYTL tokens gain value over time?</div>
+      <div class="faq-a">Token value is derived from the Net Asset Value (NAV) of TYTL's underlying real estate portfolio and treasury holdings. NAV is updated daily using institutional-grade AVMs and published on-chain via Chainlink oracle infrastructure. TYTL acquires assets at a discount to CFMV and focuses on ZIP codes with strong historical appreciation (typically ≥6.5% long-term CAGR).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span class="faq-num">07</span>How can I invest in TYTL?</div>
+      <div class="faq-a">TYTL is currently available to institutions and accredited investors only, tradable through custodial services at Anchorage Digital Bank. Broader access is planned through future regulatory pathways including Regulation A. Contact investors@tytl.ai for details.</div>
+    </div>
+
+    <div class="faq-more">
+      <a href="#" class="faq-link">View all questions &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-label"><hr><span>Contact</span><hr></div>
+    <div class="grid3">
+      <div class="contact-card">
+        <div class="eyebrow">Homeowners</div>
+        <p>Learn how to convert a fractional piece of your home's equity into cash in as little as 5 days.</p>
+        <a href="mailto:contact@tytl.ai" class="btn-gold" style="font-size:12px;padding:9px 18px;">contact@tytl.ai</a>
+      </div>
+      <div class="contact-card">
+        <div class="eyebrow">Investors</div>
+        <p>For institutions and accredited investors Forward Purchase Commitment Offering and TYTL Tokens.</p>
+        <a href="mailto:investors@tytl.ai" class="btn-gold" style="font-size:12px;padding:9px 18px;">investors@tytl.ai</a>
+      </div>
+      <div class="contact-card">
+        <div class="eyebrow">Partners</div>
+        <p>Distribution partners to help scale fractional equity acquisitions in premium single-family homes.</p>
+        <a href="mailto:info@tytl.ai" class="btn-gold" style="font-size:12px;padding:9px 18px;">info@tytl.ai</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">TYTL</div>
+        <div class="footer-tagline">Home equity, tokenized.<br>A new asset class for investors.<br>A new path for homeowners.</div>
+      </div>
+      <div>
+        <div class="footer-col-h">Platform</div>
+        <a href="#" class="footer-link">How it works</a>
+        <a href="#" class="footer-link">Homeowners</a>
+        <a href="#" class="footer-link">Investors</a>
+        <a href="#" class="footer-link">The Token</a>
+      </div>
+      <div>
+        <div class="footer-col-h">Company</div>
+        <a href="#" class="footer-link">About TYTL</a>
+        <a href="#" class="footer-link">Partners</a>
+        <a href="#" class="footer-link">News</a>
+        <a href="#" class="footer-link">Resources</a>
+      </div>
+      <div>
+        <div class="footer-col-h">Legal</div>
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Disclosures</a>
+        <a href="#" class="footer-link">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TYTL Corp. All rights reserved.</p>
+      <p>contact@tytl.ai</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
